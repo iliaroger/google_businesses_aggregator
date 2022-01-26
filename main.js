@@ -1,5 +1,5 @@
 const axios = require('axios');
-require('dotenv').config;
+require('dotenv').config();
 
 const api_key = process.env.GOOGLE_API_KEY;
 const business_type = 'restaurant';
