@@ -1,6 +1,7 @@
 const axios = require('axios');
+require('dotenv').config;
 
-const api_key = 'AIzaSyAvexm-2pkBk6Ub37J3_2yKDAdjWCvxpF4';
+const api_key = process.env.GOOGLE_API_KEY;
 const business_type = 'restaurant';
 const location = '50.110924, 8.682127';
 
