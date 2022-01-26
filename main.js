@@ -1,4 +1,5 @@
 const axios = require('axios');
+const puppeteer = require('puppeteer');
 require('dotenv').config();
 
 const api_key = process.env.GOOGLE_API_KEY;
@@ -37,7 +38,18 @@ const getEmails = async () => {
 
   const data = await Promise.all(get_websites);
 
-  console.log(data);
+  const get_email = async function (email) {
+    console.log('email: ', email);
+    const regex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi;
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(email);
+    const email_response = (await page.content()).match(regex);
+    console.log(email_response);
+    await page.close();
+    await browser.close();
+    return email_response;
+  };
 };
 
 getEmails();
